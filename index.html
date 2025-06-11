@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #333;
+            transition: background 0.5s ease;
+        }
+        
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 90%;
+            margin: 20px;
+            transition: all 0.5s ease;
+        }
+        
+        h1 {
+            color: #ff6b6b;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            color: #ff8e8e;
+            margin-top: 0;
+            font-size: 1.8rem;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .countdown-item {
+            background: #ff6b6b;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            min-width: 70px;
+        }
+        
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .countdown-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+        
+        .heart {
+            color: #ff6b6b;
+            font-size: 1.5rem;
+            margin: 0 5px;
+        }
+        
+        .gift-box {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            background: #ff6b6b;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .gift-box:hover {
+            transform: scale(1.1);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        ul {
+            text-align: left;
+            margin-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .signature {
+            font-style: italic;
+            margin-top: 30px;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 500px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .countdown {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="loading-screen">
+        <h1>Happy Birthday!</h1>
+        <p>Loading something special...</p>
+    </div>
+    
+    <div class="container hidden" id="countdown-screen">
+        <h1>Your Special Moment is Almost Here<span class="heart">❤</span></h1>
+        
+        <div class="countdown">
+            <div class="countdown-item">
+                <div class="countdown-number" id="hours">0</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="minutes">0</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="seconds">0</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+        
+        <p>Just a little more... A special surprise for my favorite person<span class="heart">❤</span></p>
+    </div>
+    
+    <div class="container hidden" id="ready-screen">
+        <h1>The Moment is Here!</h1>
+        <h2>It's 5:33 PM!</h2>
+        
+        <p>Your special surprise is ready<span class="heart">❤</span></p>
+        
+        <hr>
+        
+        <p><strong>For you →</strong></p>
+        
+        <div class="gift-box" id="gift-box">🎁</div>
+    </div>
+    
+    <div class="container hidden" id="message-screen">
+        <h1>Happy Birthday!</h1>
+        <h2>To My Cutiepie</h2>
+        
+        <p>May every wish you make today come true. You deserve the world, and I'll always be here to remind you of that.</p>
+        
+        <p>Let's always stay like this... together, forever <span class="heart">😊</span></p>
+    </div>
+    
+    <div class="container hidden" id="final-message-screen">
+        <h1>Happy Birthday!</h1>
+        <h2>To My Cutiepie</h2>
+        
+        <ul>
+            <li>Just wanted to remind you—you're my favorite person. My days are better, smiles are wider, and life is a "yesterday because of you."</li>
+            <li>Hope your birthday is full of love, magic, and everything that makes you smile</li>
+            <li>May every wish you make today come true. You deserve the world, and I'll always be here to remind you of that.</li>
+            <li>Let's always stay like this... together, forever</li>
+        </ul>
+        
+        <p class="signature">With all my love ❤</p>
+    </div>
+
+    <script>
+        // Simulate loading screen
+        setTimeout(() => {
+            document.getElementById('loading-screen').classList.add('hidden');
+            document.getElementById('countdown-screen').classList.remove('hidden');
+            
+            // Set the target time to today at 5:33 PM
+            const now = new Date();
+            const targetTime = new Date();
+            targetTime.setHours(21, 33, 0, 0); // 5:33 PM
+            
+            // If it's already past 5:33 PM today, set for 5:33 PM tomorrow
+            if (now > targetTime) {
+                targetTime.setDate(targetTime.getDate() + 1);
+            }
+            
+            // Update countdown every second
+            const countdown = setInterval(() => {
+                const now = new Date();
+                const diff = targetTime - now;
+                
+                if (diff <= 0) {
+                    clearInterval(countdown);
+                    document.getElementById('countdown-screen').classList.add('hidden');
+                    document.getElementById('ready-screen').classList.remove('hidden');
+                    return;
+                }
+                
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            }, 1000);
+        }, 2000);
+        
+        // Gift box click event
+        document.getElementById('gift-box').addEventListener('click', () => {
+            document.getElementById('ready-screen').classList.add('hidden');
+            document.getElementById('message-screen').classList.remove('hidden');
+            
+            // After 5 seconds, show the final message
+            setTimeout(() => {
+                document.getElementById('message-screen').classList.add('hidden');
+                document.getElementById('final-message-screen').classList.remove('hidden');
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
