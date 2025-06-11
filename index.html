@@ -161,7 +161,7 @@
     
     <div class="container hidden" id="ready-screen">
         <h1>The Moment is Here!</h1>
-        <h2>It's 5:33 PM!</h2>
+        <h2>It's 11:59 PM!</h2>
         
         <p>Your special surprise is ready<span class="heart">❤</span></p>
         
@@ -201,12 +201,12 @@
             document.getElementById('loading-screen').classList.add('hidden');
             document.getElementById('countdown-screen').classList.remove('hidden');
             
-            // Set the target time to today at 5:33 PM
+            // Set the target time to today at 11:59 PM
             const now = new Date();
             const targetTime = new Date();
-            targetTime.setHours(21, 33, 0, 0); // 5:33 PM
+            targetTime.setHours(21, 33, 0, 0); // 11:59 PM
             
-            // If it's already past 5:33 PM today, set for 5:33 PM tomorrow
+            // If it's already past 11:59 PM today, set for 5:33 PM tomorrow
             if (now > targetTime) {
                 targetTime.setDate(targetTime.getDate() + 1);
             }
